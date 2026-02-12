@@ -1,12 +1,12 @@
-from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP # type: ignore
 
 # Senin eski ve harika fonksiyonlarını içeri alıyoruz
-from functions.weather_func import get_weather
-from functions.open_app_func import open_app
-from functions.general_func import open_website, get_system_stats
-from functions.homework_func import add_homework, check_homework
-from functions.play_on_youtube_func import play_on_youtube
-from functions.search_wiki_func import search_wiki
+from functions.weather_func import get_weather # type: ignore
+from functions.open_app_func import open_app # type: ignore
+from functions.general_func import open_website, get_system_stats # type: ignore
+from functions.homework_func import add_homework, check_homework # type: ignore
+from functions.play_on_youtube_func import play_on_youtube # type: ignore
+from functions.search_wiki_func import search_wiki # type: ignore   
 
 # 1. MCP Sunucumuzu oluşturuyoruz
 mcp = FastMCP("AtlasTools")
