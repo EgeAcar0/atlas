@@ -3,15 +3,15 @@ import sys
 import json
 import asyncio
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from openai import AsyncOpenAI
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+from fastapi import FastAPI, HTTPException # type: ignore
+from pydantic import BaseModel # type: ignore
+from openai import AsyncOpenAI # type: ignore   
+from mcp import ClientSession, StdioServerParameters # type: ignore
+from mcp.client.stdio import stdio_client # type: ignore
 
 # --- AYARLAR ---
 MEMORY_FILE = os.path.join(os.path.dirname(__file__), "atlas_memory.json")
-MODEL_NAME = "kimi" # Ollama'daki modelinin tam adı
+MODEL_NAME = "kimi-k2.5:cloud" # Ollama'daki modelinin tam adı
 
 # Ollama İstemcimiz (Yerel Yapay Zeka)
 llm_client = AsyncOpenAI(
@@ -159,7 +159,7 @@ async def chat_endpoint(request: ChatRequest):
                 print(f"🛠️ MCP Aracı Tetiklendi: {fonksiyon_adi} -> {param_dict}")
                 
                 # Aracı MCP üzerinden çalıştırıyoruz
-                arac_sonucu = await mcp_session.call_tool(fonksiyon_adi, param_dict)
+                arac_sonucu = await mcp_session.call_tool(fonksiyon_adi, param_dict) # type: ignore
                 
                 # Sonucu modele geri veriyoruz
                 messages.append({
@@ -203,6 +203,6 @@ async def chat_endpoint(request: ChatRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    import uvicorn
+    import uvicorn # type: ignore
     # Terminalden çalıştırmak için: python atlas_v2.py
     uvicorn.run(app, host="127.0.0.1", port=8000)
